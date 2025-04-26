@@ -1,0 +1,163 @@
+/* 
+ * EMMIHUB - Neural Circuit Theme
+ * Tech-inspired theme with circuit black background and neon red/blue accents
+ */
+
+.theme-neural-circuit {
+    /* Background */
+    --color-background: linear-gradient(135deg, #121622);
+    --color-background-alt: rgba(16, 16, 16, 0.7);
+    
+    /* Text Colors */
+    --color-text: #d1ffd2;
+    --color-text-muted: rgba(209, 255, 210, 0.7);
+    --color-text-inverse: #050505;
+    
+    /* Accent Colors */
+    --color-primary: #ff2b4e;
+    --color-primary-rgb: 255, 43, 78;
+    --color-secondary: #0066ff;
+    --color-secondary-rgb: 0, 102, 255;
+    --color-highlight: #e2c275;
+    --color-highlight-rgb: 226, 194, 117;
+    
+    /* Particle Colors */
+    --color-particle-primary: #e0aaff;
+    --color-particle-secondary: #b5179e;
+    --particle-line-color: rgba(255,255,255,0.36); /* Further increased opacity for maximum visibility */
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #ff2b4e, #0066ff);
+    --gradient-secondary: linear-gradient(90deg, #0066ff, #ff2b4e);
+    --gradient-highlight: linear-gradient(135deg, #e2c275, #ff2b4e);
+    
+    /* Shadows */
+    --shadow-color: rgba(255, 43, 78, 0.2);
+    --glow-primary: 0 0 15px rgba(255, 43, 78, 0.5);
+    --glow-secondary: 0 0 15px rgba(0, 102, 255, 0.5);
+    
+    /* Specific Element Colors */
+    --neural-network-color: rgba(255, 43, 78, 0.5);
+    --constellation-color: rgba(0, 102, 255, 0.7);
+    --code-color: #ff2b4e;
+    --terminal-color: #d1ffd2;
+    
+    /* Background Elements */
+    background: var(--color-background);
+    color: var(--color-text);
+}
+
+/* Theme-specific Element Styling */
+.theme-neural-circuit .neural-organic-network {
+    border-color: var(--color-primary);
+}
+
+.theme-neural-circuit .sacred-geometry-backdrop {
+    opacity: 0.1;
+    border-color: var(--color-secondary);
+}
+
+.theme-neural-circuit .stars-layer {
+    background-color: transparent;
+}
+
+.theme-neural-circuit .stars-layer.distant {
+    box-shadow: 0 0 1px var(--color-primary);
+}
+
+.theme-neural-circuit .stars-layer.mid-field {
+    box-shadow: 0 0 2px var(--color-primary);
+}
+
+.theme-neural-circuit .stars-layer.foreground {
+    box-shadow: 0 0 3px var(--color-primary);
+}
+
+.theme-neural-circuit .typewriter::after {
+    background-color: var(--color-primary);
+}
+
+.theme-neural-circuit .section-title::after {
+    background: var(--gradient-primary);
+}
+
+.theme-neural-circuit .tier.explorer {
+    border-color: var(--color-primary);
+}
+
+.theme-neural-circuit .tier.scholar {
+    border-color: var(--color-secondary);
+}
+
+.theme-neural-circuit .tier.visionary {
+    border-color: var(--color-highlight);
+}
+
+.theme-neural-circuit .tier.innovator {
+    border-color: var(--gradient-primary);
+}
+
+.theme-neural-circuit .assistant-icon.math-icon {
+    background: linear-gradient(135deg, #ff2b4e, #0066ff);
+}
+
+.theme-neural-circuit .assistant-icon.research-icon {
+    background: linear-gradient(135deg, #0066ff, #ff2b4e);
+}
+
+.theme-neural-circuit .assistant-icon.focus-icon {
+    background: linear-gradient(135deg, #e2c275, #0066ff);
+}
+
+.theme-neural-circuit .assistant-icon.linux-icon {
+    background: linear-gradient(135deg, #ff2b4e, #1a1a1a);
+}
+
+.theme-neural-circuit .assistant-icon.creative-icon {
+    background: linear-gradient(135deg, #0066ff, #e2c275);
+}
+
+.theme-neural-circuit .assistant-icon.workflow-icon {
+    background: linear-gradient(135deg, #e2c275, #0066ff);
+}
+
+.theme-neural-circuit .globe {
+    background: radial-gradient(circle at center, #101010, #050505);
+    box-shadow: 0 0 50px rgba(255, 43, 78, 0.3);
+}
+
+.theme-neural-circuit .cta-button.explorer {
+    background-color: rgba(255, 43, 78, 0.2);
+    border-color: var(--color-primary);
+}
+
+.theme-neural-circuit .cta-button.scholar {
+    background-color: rgba(0, 102, 255, 0.2);
+    border-color: var(--color-secondary);
+}
+
+.theme-neural-circuit .cta-button.visionary {
+    background-color: rgba(226, 194, 117, 0.2);
+    border-color: var(--color-highlight);
+}
+
+.theme-neural-circuit .cta-button.innovator {
+    background: linear-gradient(135deg, rgba(255, 43, 78, 0.2), rgba(0, 102, 255, 0.2));
+    border-image: var(--gradient-primary) 1;
+}
+
+/* Circuit Pattern Overlay */
+.theme-neural-circuit::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(255, 43, 78, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 102, 255, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: -1;
+}

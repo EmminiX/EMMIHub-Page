@@ -1,0 +1,696 @@
+<!-- MCP TEST COMMENT: File access via emmi-filesystem-mcp-server -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EMMIHUB - A cognitive enhancement platform for human-AI collaboration">
+    <meta name="keywords" content="AI, cognitive enhancement, human-AI collaboration, assistants, EMMIHUB">
+    <meta name="author" content="Emmi C.">
+    
+    <title>EMMIHUB - Cognitive Enhancement Platform</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.png" type="image/png">
+    
+    <!-- Preload Fonts -->
+    <link rel="preload" href="assets/fonts/lexend/Lexend-Variable.ttf" as="font" type="font/truetype" crossorigin>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="src/css/promptsage-animation.css">
+    
+    <!-- Preload Critical JavaScript -->
+    <link rel="modulepreload" href="src/js/core/error-logging.js">
+    <link rel="modulepreload" href="src/js/core/app.js">
+    
+    <!-- Error Logging (Early Load) -->
+    <script type="module">
+        import { initPromptSageAnimation } from './src/js/animations/promptsageAnimation.js';
+        
+        // Initialize PromptSage animation
+        document.addEventListener('DOMContentLoaded', () => {
+            initPromptSageAnimation('promptsage-animation');
+        });
+        
+        // Initialize error logging as early as possible
+        import errorLogger from './src/js/core/error-logging.js';
+        
+        // Log page load
+        window.addEventListener('load', () => {
+            errorLogger.updateUserContext({
+                pageLoadTime: performance.now(),
+                screenSize: `${window.innerWidth}x${window.innerHeight}`
+            });
+        });
+    </script>
+</head>
+<body class="blockchain-horizons no-js">
+    <script>
+      // Remove no-js class as soon as possible if JS is enabled
+      document.documentElement.classList.remove('no-js');
+      document.body && document.body.classList.remove('no-js');
+    </script>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <a href="https://emmi.zone" target="_blank" rel="noopener" class="logo">
+                <img src="assets/images/logo.png" alt="EMMIHUB Logo">
+            </a>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#philosophy">Philosophy</a></li>
+                    <li><a href="#community">Community</a></li>
+                    <li><a href="#technology">Technology</a></li>
+                    <li><a href="#assistants">Assistants</a></li>
+                    <li><a href="#vision">Vision</a></li>
+                    <li><a href="#join">About</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Theme Selector -->
+    <div class="theme-selector" aria-label="Theme Selector">
+        <span class="theme-label">Theme</span>
+        <button class="theme-toggle" aria-label="Change theme">
+            <div class="orbital-toggle">
+                <div class="theme-option theme-quantum-void" data-theme="quantum-void" title="Quantum Void Theme">
+                    <span class="theme-dot"></span>
+                    <span class="theme-name">Quantum Void</span>
+                </div>
+                <div class="theme-option theme-biomorphic-synthesis" data-theme="biomorphic-synthesis" title="Biomorphic Synthesis Theme">
+                    <span class="theme-dot"></span>
+                    <span class="theme-name">Biomorphic Synthesis</span>
+                </div>
+                <div class="theme-option theme-neural-circuit" data-theme="neural-circuit" title="Neural Circuit Theme">
+                    <span class="theme-dot"></span>
+                    <span class="theme-name">Neural Circuit</span>
+                </div>
+                <div class="theme-option theme-blockchain-horizons" data-theme="blockchain-horizons" title="Blockchain Horizons Theme">
+                    <span class="theme-dot"></span>
+                    <span class="theme-name">Blockchain Horizons</span>
+                </div>
+            </div>
+        </button>
+    </div>
+    
+    <!-- Accessibility Controls -->
+    <div class="accessibility-controls">
+        <button class="reduced-motion-toggle" aria-label="Toggle reduced motion">
+            <span class="icon">⚡</span>
+            <span class="label">Reduced Motion</span>
+        </button>
+        <button class="high-contrast-toggle" aria-label="Toggle high contrast">
+            <span class="icon">👁️</span>
+            <span class="label">High Contrast</span>
+        </button>
+    </div>
+    
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="neural-organic-network"></div>
+            <div class="interactive-particle-system"></div>
+            
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="headline typewriter" data-typewriter-delay="[80,120]">Welcome to EMMIHUB</h1>
+                    <p class="subheadline">A cognitive enhancement platform for human-AI collaboration</p>
+                    <a href="#community" class="cta-button">Join the Community</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Introduction Section -->
+        <section id="introduction" class="introduction-section">
+            <div class="container section-inner">
+                <h2 class="section-title">Bridging Human and AI Intelligence</h2>
+                <p class="intro-text">EMMIHUB is a platform designed to enhance human cognitive capabilities through thoughtful AI integration. We focus on creating tools that complement human thinking rather than replacing it.</p>
+                
+                <div class="split-screen-visualization">
+                    <div class="human-side">
+                        <!-- Human side visualization will be rendered by JS -->
+                    </div>
+                    <div class="connection-zone">
+                        <!-- Connection visualization will be rendered by JS -->
+                    </div>
+                    <div class="ai-side">
+                        <!-- AI side visualization will be rendered by JS -->
+                    </div>
+                </div>
+                
+                <p class="closing-text">EMMIHUB adapts to enhance your natural thinking processes, creating a seamless integration between human intuition and AI capabilities.</p>
+            </div>
+        </section>
+        
+        <!-- Philosophy Section -->
+        <section id="philosophy" class="philosophy-section">
+            <div class="cosmic-environment">
+                <div class="neural-organic-network"></div>
+            </div>
+            
+            <div class="container section-inner">
+                <div class="content-wrapper">
+                    <h2 class="section-title">Our Philosophy</h2>
+                    <div class="assistants-blur-container philosophy-intro-blur">
+                        <p class="assistants-closing-text">At EMMIHUB, we believe that technology should serve humanity — not the other way around. Our approach combines techno-utopian optimism with scientific pantheism: we see the digital and natural worlds as interconnected, and we honor both by designing tools that are transparent, ethical, and adaptable.</p>
+                    </div>
+                    <h3 class="subsection-title">We are committed to:</h3>
+                    <ul class="philosophy-list">
+                        <li><strong>Empowering People:</strong> Designing AI assistants and digital solutions that adapt to you, amplifying your strengths and supporting your unique path.</li>
+                        <li><strong>Ethical Innovation:</strong> Setting new standards for responsible AI, respecting autonomy, privacy, and well-being.</li>
+                        <li><strong>Inclusion and Accessibility:</strong> Creating technology that welcomes neurodivergent thinkers and diverse populations globally.</li>
+                        <li><strong>Continuous Growth:</strong> Fostering lifelong learning for both humans and AI, fueling creative and societal progress.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Community Section -->
+        <section id="community" class="community-section">
+            <div class="cosmic-environment">
+                <div class="neural-organic-network"></div>
+            </div>
+            <div class="container section-inner">
+                <h2 class="section-title">Join Our Community</h2>
+                <div class="assistants-blur-container community-intro-blur">
+                    <p class="assistants-closing-text">EMMIHUB is more than a platform — it's a community of thinkers, creators, and innovators exploring the frontier of human-AI collaboration. Join us at different levels of engagement.</p>
+                </div>
+                
+                <div class="tier-container">
+                    <div class="tier explorer" data-tier-type="explorer">
+                        <h3>Explorer</h3>
+                        <div class="tier-price">Free</div>
+                        <ul class="tier-features">
+                            <li>Access to basic assistants</li>
+                            <li>Community forum participation</li>
+                            <li>Monthly newsletter</li>
+                            <li>Public documentation</li>
+                        </ul>
+                        <div class="tier-cta">
+                            <a href="https://ai.emmi.zone" class="tier-button explorer" target="_blank" rel="noopener">Get Started</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tier scholar" data-tier-type="scholar">
+                        <h3>Scholar</h3>
+                        <div class="tier-price">$9/month</div>
+                        <ul class="tier-features">
+                            <li>All Explorer features</li>
+                            <li>Advanced assistants</li>
+                            <li>Priority support</li>
+                            <li>Extended usage limits</li>
+                            <li>Early access to new features</li>
+                        </ul>
+                        <div class="tier-cta">
+                            <a href="#join" class="tier-button scholar">Become a Scholar</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tier visionary" data-tier-type="visionary">
+                        <h3>Visionary</h3>
+                        <div class="tier-price">$29/month</div>
+                        <ul class="tier-features">
+                            <li>All Scholar features</li>
+                            <li>Custom assistant development</li>
+                            <li>Private community access</li>
+                            <li>Monthly workshops</li>
+                            <li>API access</li>
+                            <li>Dedicated support</li>
+                        </ul>
+                        <div class="tier-cta">
+                            <a href="#join" class="tier-button visionary">Join as Visionary</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tier innovator" data-tier-type="innovator">
+                        <h3>Innovator</h3>
+                        <div class="tier-price">$99/month</div>
+                        <ul class="tier-features">
+                            <li>All Visionary features</li>
+                            <li>Direct collaboration with team</li>
+                            <li>Influence platform roadmap</li>
+                            <li>White-label options</li>
+                            <li>Enterprise support</li>
+                            <li>Custom integration</li>
+                            <li>Unlimited resources</li>
+                        </ul>
+                        <div class="tier-cta">
+                            <a href="#join" class="tier-button innovator">Become an Innovator</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="support-allocation">
+                    <h3 class="subsection-title">How Your Support Is Used</h3>
+                    <ul class="allocation-list">
+                        <li>
+                            <strong>40%</strong>
+                            <span>Research & Development</span>
+                        </li>
+                        <li>
+                            <strong>25%</strong>
+                            <span>Infrastructure & Computing</span>
+                        </li>
+                        <li>
+                            <strong>20%</strong>
+                            <span>Community & Education</span>
+                        </li>
+                        <li>
+                            <strong>15%</strong>
+                            <span>Operations & Support</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Technology Section -->
+        <section id="technology" class="technology-section">
+            <div class="cosmic-environment">
+                <div class="neural-organic-network"></div>
+            </div>
+            
+            <div class="container section-inner">
+                <div class="content-wrapper">
+                    <h2 class="section-title">The PromptSage™ Framework</h2>
+                    <div class="assistants-blur-container technology-intro-blur">
+                        <p class="assistants-closing-text">The heart of EMMIHUB is the PromptSage™ framework—a revolutionary approach to human-AI interaction that creates assistants capable of adapting to your unique cognitive patterns.</p>
+                    </div>
+                    
+                    <div id="promptsage-animation" class="promptsage-animation"></div>
+                    
+                    <div class="framework-details">
+                        <h3 class="subsection-title">Core Principles:</h3>
+                        
+                        <ul class="philosophy-list">
+                            <li><strong>Hierarchical Structure:</strong> XML-based organization that ensures AI responses remain consistent, ethical, and contextually appropriate</li>
+                            <li><strong>Cognitive Adaptation:</strong> Information delivery that matches your thinking style — whether you process visually, analytically, or through patterns</li>
+                            <li><strong>Human-Complementary Design:</strong> Technology built to amplify human capabilities rather than replace them</li>
+                        </ul>
+                        <div class="blur-effect-container">
+                            <p class="subsection-text">Unlike traditional AI interfaces that force users into rigid interaction patterns, PromptSage™ creates assistants that understand the nuances of how different minds work, making complex information accessible regardless of your cognitive style.
+                            </p>
+                            <p class="subsection-text">The framework represents a significant advancement in AI assistant design, with each component thoughtfully structured to maintain clarity and ethical boundaries while providing flexible, personalized responses.</p>
+                        </div>
+                    
+                    <p class="closing-text">Experience the difference of AI assistants built with PromptSage™ technology — where the machine adapts to you, not the other way around.</p>
+                    
+                    <div class="cta-container">
+                        <a href="#community" class="cta-button">Explore Our Assistants</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Assistants Section -->
+        <section id="assistants" class="assistants-section">
+            <div class="assistants-network neural-organic-network"></div>
+            <div class="container section-inner">
+                <h2 class="section-title">Specialized Assistants</h2>
+                <div class="assistants-blur-container assistants-intro-blur">
+                    <p class="assistants-closing-text">EMMIHUB offers a range of specialized assistants designed to enhance different aspects of cognitive work. Each assistant is optimized for specific tasks while maintaining a consistent interface.</p>
+                </div>
+                
+                <div class="assistants-flex-container">
+                    <!-- Assistant cards list on the left -->
+                    <div id="assistant-card-container">
+                        <!-- Cards will be dynamically generated by JavaScript -->
+                    </div>
+                    
+                    <!-- Video player container on the right -->
+                    <div class="video-player-container">
+                        <div class="video-player-wrapper">
+                            <video 
+                                id="assistant-demo-video" 
+                                src="assets/video/soon.mp4"
+                                title="EMMIHUB Assistant Demo" 
+                                playsinline
+                                loop>
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="assistants-blur-container">
+                    <p class="assistants-closing-text">Explore many more specialized assistants on the platform, each designed with the PromptSage™ framework to enhance different cognitive styles and domain-specific challenges.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Vision Section -->
+        <section id="vision" class="vision-section">
+            <div class="cosmic-environment">
+                <div class="neural-organic-network"></div>
+            </div>
+            <div class="container section-inner">
+                <div class="content-wrapper">
+                    <h2 class="section-title">Our Vision</h2>
+                    <div class="assistants-blur-container vision-intro-blur">
+                        <p class="assistants-closing-text">We envision a future where human and AI collaboration unlocks the full potential of both technology and consciousness — expanding our cognitive horizons, embracing neurodiversity, and solving meaningful challenges together. At EMMIHUB, we are dedicated to creating an ecosystem where technology amplifies human creativity and wisdom, respects autonomy, and brings people together across boundaries, always keeping humanity at the heart of every decision.</p>
+                    </div>
+                    
+                    <ul class="philosophy-list">
+                        <li><strong>Personalized Cognitive Enhancement:</strong> AI systems that adapt to the unique ways every individual thinks and learns, supporting neurodivergent and diverse minds.</li>
+                        <li><strong>Empowered Collaboration:</strong> Humans and AI working in harmony—co-creating solutions, amplifying strengths, and sparking innovation that neither could achieve alone.</li>
+                        <li><strong>Democratized and Responsible Access:</strong> Committed to making advanced cognitive and creative tools accessible to all, regardless of background or ability—ensuring fairness and equity on a global scale.</li>
+                        <li><strong>Ethical and Transparent AI:</strong> Pioneering new standards for responsible, explainable AI that prioritizes autonomy, privacy, and the well-being of our planet and society.</li>
+                        <li><strong>Lifelong Growth and Evolution:</strong> Cultivating an environment of curiosity and continuous growth, with AI systems and humans learning and evolving together toward a brighter, more inclusive future.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Join Section -->
+        <section id="join" class="join-section">
+            <div class="join-network neural-organic-network"></div>
+            <div class="container section-inner">
+                <h2 class="section-title">About</h2>
+                <div class="assistants-blur-container about-intro-blur">
+                    <p class="assistants-closing-text">EMMIHUB is the brainchild of Emanuel "EMMI" Covasa — a lifelong learner, innovator, and advocate for ethical, human-centered technology. Our platform is built upon a deep conviction: that technology, when designed with empathy and insight, has the power to amplify human potential, foster creativity, and create a more inclusive world for all.</p>
+                </div>
+                
+                <div class="global-community-visualization">
+                    <div class="globe">
+                        <!-- Globe visualization will be rendered by JS -->
+                    </div>
+                </div>
+                
+                <ul class="philosophy-list">
+                    <li><strong>Emanuel's Story</strong>
+                        <br>
+                        My journey has been anything but conventional. Rooted in Romania, shaped by two decades in Ireland, and seasoned across a spectrum of fields—from engineering and hospitality to AI, cybersecurity, and education — I've lived and learned as a neurodivergent thinker. Challenges like dyslexia and ADHD never limited me; instead, they shaped my philosophy, driving my passion for building systems that truly embrace diversity and individual cognitive strengths.
+
+                        After years navigating both the technical world and human - centered industries, I founded EMMIHUB as a bridge — a place where advanced AI can complement human intuition, and where every user, regardless of their background or learning style, can thrive.</li>
+                </ul>
+
+                <ul class="philosophy-list">
+                    <li><strong>Join the Journey</strong>
+                        <br>
+                        EMMIHUB isn't just a platform — it's a movement. Whether you're an individual, an educator, a creator, or a business, we invite you to join us in shaping a future where technology and consciousness evolve together, unlocking new possibilities for all. Let's build a brighter, more inclusive future through meaningful human – AI collaboration.</li>
+                </ul>
+                
+                <div class="cta-container">
+                    <a href="#community" class="cta-button explorer">Join Us!</a>
+                </div>
+
+                <blockquote class="creator-quote">
+                    "Genuine progress is born where human curiosity meets ethical technology—when we honor every mind's uniqueness, the future becomes a collaborative masterpiece."
+— Emmi C.
+                </blockquote>
+                
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="https://emmi.zone" target="_blank" rel="noopener" aria-label="EMMIHUB Logo">
+                        <img src="assets/images/logo.png" alt="EMMIHUB Logo">
+                    </a>
+                    <p>Enhancing human cognitive capabilities through thoughtful AI integration.</p>
+                </div>    
+                
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h3>Platform</h3>
+                        <a href="#introduction">Introduction</a>
+                        <a href="#philosophy">Philosophy</a>
+                        <a href="#technology">Technology</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3>Community</h3>
+                        <a href="#community">Join</a>
+                        <a href="https://discord.gg/RgWwQrD3" target="_blank">Discord</a>
+                        <a href="https://blog.emmi.zone" target="_blank">Blog</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3>Resources</h3>
+                        <a href="#">Documentation</a>
+                        <a href="#">Tutorials</a>
+                        <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3>Social</h3>
+                        <a href="https://github.com/EmminiX" target="_blank">GitHub</a>
+                        <a href="https://www.linkedin.com/in/emmic/" target="_blank">LinkedIn</a>
+                        <a href="https://x.com/deep_endX" target="_blank">X</a>
+                    </div>
+                    
+                    <div class="link-group payment-group">
+                        <h3>Payment</h3>
+                            <a href="https://stripe.com" target="_blank" rel="noopener" aria-label="Payment processing by Stripe">
+                                <div class="payment-container">
+                                    <img src="assets/images/payment.png" alt="Payment methods" class="payment-image">
+                                </div>
+                            </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright-container">
+                    <div class="copyright">
+                        &copy; 2025 EMMIHUB. All rights reserved.
+                    </div>
+                    <div class="creator-credit">
+                        Created by <a href="https://emmi.zone" target="_blank">Emmi C.</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Main Application Script -->
+    <script type="module" src="src/js/core/app.js"></script>
+    
+    <!-- Assistant Cards Script - Modified to ensure it runs after app.js -->
+    <script defer src="src/js/assistant-cards.js"></script>
+    
+    <!-- Community Tier Cards Hover Fix -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Store references to elements
+            const tierCards = document.querySelectorAll('.tier');
+            
+            function setupCardHover(card) {
+                card.addEventListener('mouseenter', function() {
+                    this.classList.add('active');
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.classList.remove('active');
+                });
+            }
+            
+            // Initialize hover effects for all tier cards
+            tierCards.forEach(setupCardHover);
+            
+            // Re-initialize on theme changes
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.addEventListener('click', () => {
+                    // Short delay to let theme change complete
+                    setTimeout(() => {
+                        tierCards.forEach(card => {
+                            card.classList.remove('active');
+                            setupCardHover(card);
+                        });
+                    }, 100);
+                });
+            });
+        });
+    </script>
+    
+    <!-- Animation Scripts -->
+    <script type="module">
+        import { initTypewriters } from './src/js/animations/typewriter.js';
+        import { initParticleSystems } from './src/js/animations/particles.js';
+        import { initHeadlineParticlesSimple } from './src/js/animations/headline-particles-simple.js';
+        import { initButtonGlow } from './src/js/animations/button-glow.js';
+        
+        // Function to initialize all animations
+        function initializeAnimations() {
+            // Handle subheadline element
+            const subheadline = document.querySelector('.subheadline');
+            if (subheadline) {
+                // We have two strategies:
+                // 1. For users without JS, the subheadline is visible by default (controlled by CSS)
+                // 2. For users with JS, we create a character-by-character animation effect
+                
+                // Since we have JS running, set up the animation effect
+                // First, hide it initially - the typewriter effect will reveal it
+                subheadline.classList.remove('animate-in');
+                
+                // Split the text into individual characters for animation
+                const subheadlineText = subheadline.textContent;
+                subheadline.textContent = '';
+                
+                // Wrap the entire text in a container for animation
+                // Reset content and prepare for animation
+                subheadline.innerHTML = '';
+                const textContainer = document.createElement('div');
+                textContainer.classList.add('subheadline-text');
+                textContainer.textContent = subheadlineText;
+                subheadline.appendChild(textContainer);
+                
+                // Start with the element invisible
+                subheadline.style.opacity = '0';
+                subheadline.style.transform = 'translateY(30px)';
+                textContainer.style.opacity = '0';
+                textContainer.style.transform = 'translateY(15px)';
+                
+                // Force browser to recognize the initial state before animating
+                setTimeout(() => {
+                    // Apply the transitions (they'll be activated when we add the animate-in class)
+                    subheadline.style.transition = 'opacity 1.2s ease-out, transform 1.2s cubic-bezier(0.19, 1, 0.22, 1)';
+                    textContainer.style.transition = 'opacity 1s ease-out 0.3s, transform 1s cubic-bezier(0.19, 1, 0.22, 1) 0.3s';
+                }, 50);
+                
+                // IMPORTANT: For testing/development, add a direct fallback
+                // that ensures visibility regardless of animation timing
+                setTimeout(() => {
+                    if (parseFloat(getComputedStyle(subheadline).opacity) < 0.5) {
+                        console.log('Fallback visibility forced for subheadline');
+                        subheadline.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+                        subheadline.style.opacity = '1';
+                        subheadline.style.transform = 'translateY(0)';
+                        subheadline.classList.add('animate-in');
+                        
+                        // Also force the inner text container to be visible
+                        const textContainer = subheadline.querySelector('.subheadline-text');
+                        if (textContainer) {
+                            textContainer.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+                            textContainer.style.opacity = '1';
+                            textContainer.style.transform = 'translateY(0)';
+                        }
+                    }
+                }, 3500); // Wait longer to allow typewriter to complete
+            }
+            
+            // Initialize typewriter effects with more responsive timing
+            const typewriters = initTypewriters({
+                cursorChar: '|',
+                cursorColor: 'var(--color-primary)',
+                charDelay: [60, 90], // Slightly faster typing for better user experience
+                startDelay: 200, // Start almost immediately
+                onComplete: function() {
+                    // Trigger subheadline animation when typing completes
+                    const sub = this.element.parentElement.querySelector('.subheadline');
+                    if (sub) {
+                        // Small pause before starting the subheadline animation for effect
+                        setTimeout(() => {
+                            // First animate the container
+                            sub.classList.add('animate-in');
+                            sub.style.opacity = '1';
+                            sub.style.transform = 'translateY(0)';
+                            
+                            // Then animate the inner text with a slight delay
+                            const textContainer = sub.querySelector('.subheadline-text');
+                            if (textContainer) {
+                                setTimeout(() => {
+                                    textContainer.style.opacity = '1';
+                                    textContainer.style.transform = 'translateY(0)';
+                                }, 100);
+                            }
+                            
+                            // Add a subtle pulse/glow effect after the text appears
+                            setTimeout(() => {
+                                sub.style.boxShadow = '0 0 15px rgba(var(--color-primary-rgb), 0.5)';
+                                setTimeout(() => {
+                                    sub.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.2)';
+                                }, 600);
+                            }, 1200); // Wait for the fade-in to complete
+                        }, 200); // Short pause after headline completes before starting subheadline
+                    }
+                    
+                    // Fade out cursor shortly after subheadline animation starts
+                    if (this.state.cursorElement) {
+                        this.state.cursorElement.style.transition = 'opacity 0.5s';
+                        setTimeout(() => {
+                            this.state.cursorElement.style.opacity = '0';
+                        }, 300);
+                    }
+                }
+            });
+            
+            // Initialize particle systems
+            const particleSystems = initParticleSystems({
+                particleCount: 150,
+                connectParticles: true,
+                primaryColor: getComputedStyle(document.documentElement).getPropertyValue('--color-primary').trim(),
+                secondaryColor: getComputedStyle(document.documentElement).getPropertyValue('--color-secondary').trim(),
+                particleSize: [1.5, 2.5],
+                maxSpeed: 1.5,
+                connectionDistance: 120,
+                friction: 0.98,
+                patternDuration: 2000,
+                patternInterval: [6000, 9000],
+                patternSequence: ['flower-of-life', 'metatron-cube', 'fibonacci-spiral', 'platonic-solid', 'vesica-piscis', 'torus-mandala']
+            });
+            
+            // Remove headline particles animation
+            // const headlineParticles = initHeadlineParticlesSimple({
+            //     headlineSelector: '.headline',
+            //     particleCount: 25,
+            //     particleSize: [1.8, 3.5],
+            //     maxSpeed: 1.5,
+            //     orbitDistance: [30, 100]
+            // });
+            
+            // Initialize button glow effect for the hero CTA button
+            const buttonGlow = initButtonGlow({
+                selector: '.hero-content .cta-button',
+                glowSize: 12, // Reduced by 20% from 15
+                glowOpacity: 0.9, // Increased opacity for better visibility
+                speed: 7000, // Slowed down significantly (doubled from 3500)
+                trailLength: 20 // Doubled trail length for a longer tail
+            });
+            
+            // Update colors when theme changes
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.addEventListener('click', () => {
+                    // Allow time for theme CSS variables to update
+                    setTimeout(() => {
+                        // Remove reference to headlineParticles since we commented it out
+                        // headlineParticles.updateColors();
+                        buttonGlow.updateColors();
+                    }, 100);
+                });
+            });
+        }
+        
+        // Initialize animations as soon as possible
+        if (document.readyState === 'loading') {
+            // Document still loading, set up event listener
+            document.addEventListener('DOMContentLoaded', initializeAnimations);
+        } else {
+            // Document already loaded, run initialization immediately
+            initializeAnimations();
+        }
+    </script>
+    
+    <!-- Community Cards Script -->
+    <script src="src/js/community-cards.js"></script>
+</body>
+</html>

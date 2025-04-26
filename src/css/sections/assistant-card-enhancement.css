@@ -1,0 +1,267 @@
+/* 
+ * EMMIHUB - Assistant Card Enhancements
+ * Advanced futuristic card styling for the assistants section
+ */
+
+/* ===== ASSISTANT CARD ENHANCEMENTS ===== */
+
+/* Enhanced Card Structure with Layered Depth Effect */
+.assistant-card.enhanced-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    border: none;
+    overflow: hidden;
+    
+    /* Improve hardware acceleration */
+    transform: translateZ(0);
+    will-change: transform, box-shadow;
+    
+    /* Create base box shadow for depth */
+    box-shadow: 
+        0 5px 15px -3px rgba(0, 0, 0, 0.2),
+        0 10px 25px -5px rgba(0, 0, 0, 0.2),
+        0 0 15px rgba(var(--color-primary-rgb), 0.1),
+        0 0 0 1px rgba(var(--color-primary-rgb), 0.1);
+}
+
+/* Create the inner glow element */
+.assistant-card.enhanced-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(
+            circle at 50% 0%, 
+            rgba(var(--color-primary-rgb), 0.15),
+            transparent 60%
+        );
+    opacity: 0.5;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Animated Gradient Borders */
+.assistant-card.enhanced-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(
+        135deg,
+        rgba(var(--color-primary-rgb), 0.2),
+        rgba(var(--color-secondary-rgb), 0.2),
+        rgba(var(--color-primary-rgb), 0.2),
+        rgba(var(--color-highlight-rgb), 0.2)
+    );
+    background-size: 300% 300%;
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask: 
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: borderGradientShift 8s ease infinite;
+    opacity: 0.7;
+    transition: opacity 0.5s ease;
+}
+
+/* Geometric Corner Accents with theme support */
+.assistant-card.enhanced-card .corner {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+    opacity: 0.7;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.assistant-card.enhanced-card .corner-top-left {
+    top: 0;
+    left: 0;
+    border-top: 2px solid rgba(var(--color-primary-rgb), 0.6);
+    border-left: 2px solid rgba(var(--color-primary-rgb), 0.6);
+    border-top-left-radius: 4px;
+}
+
+.assistant-card.enhanced-card .corner-top-right {
+    top: 0;
+    right: 0;
+    border-top: 2px solid rgba(var(--color-primary-rgb), 0.6);
+    border-right: 2px solid rgba(var(--color-primary-rgb), 0.6);
+    border-top-right-radius: 4px;
+}
+
+.assistant-card.enhanced-card .corner-bottom-left {
+    bottom: 0;
+    left: 0;
+    border-bottom: 2px solid rgba(var(--color-primary-rgb), 0.6);
+    border-left: 2px solid rgba(var(--color-primary-rgb), 0.6);
+    border-bottom-left-radius: 4px;
+}
+
+.assistant-card.enhanced-card .corner-bottom-right {
+    bottom: 0;
+    right: 0;
+    border-bottom: 2px solid rgba(var(--color-primary-rgb), 0.6);
+    border-right: 2px solid rgba(var(--color-primary-rgb), 0.6);
+    border-bottom-right-radius: 4px;
+}
+
+/* Subtle Circuit Pattern Background */
+.assistant-card.enhanced-card .circuit-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 30% 20%, rgba(var(--color-primary-rgb), 0.03) 0px, transparent 50px),
+        radial-gradient(circle at 80% 30%, rgba(var(--color-secondary-rgb), 0.03) 0px, transparent 50px),
+        radial-gradient(circle at 20% 70%, rgba(var(--color-highlight-rgb), 0.03) 0px, transparent 50px);
+    background-size: 100% 100%;
+    opacity: 0.3;
+    z-index: -1;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+/* Sacred Geometry Background Pattern */
+.assistant-card.enhanced-card .sacred-geometry {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(
+        circle at center,
+        transparent 30%,
+        rgba(var(--color-primary-rgb), 0.02) 30%,
+        rgba(var(--color-primary-rgb), 0.02) 32%,
+        transparent 32%,
+        transparent 36%,
+        rgba(var(--color-primary-rgb), 0.01) 36%,
+        rgba(var(--color-primary-rgb), 0.01) 38%,
+        transparent 38%
+    );
+    background-size: 120px 120px;
+    opacity: 0.6;
+    z-index: -2;
+    pointer-events: none;
+    transition: opacity 0.5s ease, background-size 1s ease;
+}
+
+/* Interactive Hover Effects */
+.assistant-card.enhanced-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 
+        0 20px 30px -8px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(var(--color-primary-rgb), 0.2),
+        0 0 0 1px rgba(var(--color-primary-rgb), 0.2);
+}
+
+/* Enhance inner glow on hover */
+.assistant-card.enhanced-card:hover::before {
+    opacity: 0.8;
+}
+
+/* Enhance border on hover */
+.assistant-card.enhanced-card:hover::after {
+    opacity: 1;
+}
+
+/* Enhance corner accents on hover */
+.assistant-card.enhanced-card:hover .corner {
+    opacity: 1;
+    width: 40px;
+    height: 40px;
+}
+
+/* Enhance patterns on hover */
+.assistant-card.enhanced-card:hover .circuit-pattern {
+    opacity: 0.6;
+}
+
+.assistant-card.enhanced-card:hover .sacred-geometry {
+    opacity: 0.8;
+    background-size: 100px 100px;
+}
+
+/* Typography Enhancements */
+.assistant-card.enhanced-card h3 {
+    position: relative;
+    margin-bottom: var(--space-md);
+    text-shadow: 0 0 10px rgba(var(--color-primary-rgb), 0.3);
+    padding-bottom: var(--space-sm);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Animation Keyframes */
+@keyframes borderGradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Reduced Motion Considerations */
+@media (prefers-reduced-motion: reduce) {
+    .assistant-card.enhanced-card,
+    .assistant-card.enhanced-card::before,
+    .assistant-card.enhanced-card::after,
+    .assistant-card.enhanced-card .corner {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    .assistant-card.enhanced-card:hover {
+        transform: translateY(-4px) !important;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .assistant-card.enhanced-card {
+        padding: var(--space-lg);
+    }
+    
+    .assistant-card.enhanced-card:hover {
+        transform: translateY(-4px) scale(1.005);
+    }
+    
+    .assistant-card.enhanced-card:hover .corner {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@media (max-width: 576px) {
+    .assistant-card.enhanced-card {
+        padding: var(--space-md);
+    }
+    
+    .assistant-card.enhanced-card:hover {
+        transform: translateY(-2px) scale(1);
+    }
+    
+    .assistant-card.enhanced-card:hover .corner {
+        width: 24px;
+        height: 24px;
+    }
+}

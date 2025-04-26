@@ -1,0 +1,210 @@
+/* ===== ASSISTANTS SECTION GLOW EFFECTS ===== */
+
+/* Video container glow effect that adapts to theme colors */
+.video-player-container {
+    position: relative;
+    width: 60%;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: rgba(20, 22, 30, 0.5);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25), 
+                0 0 20px rgba(var(--color-primary-rgb), 0.4);
+    height: 380px;
+    display: flex;
+    align-items: center;
+    transition: box-shadow 0.6s ease-in-out;
+    animation: videoContainerGlow 3s infinite alternate;
+}
+
+/* Animate the glow effect */
+@keyframes videoContainerGlow {
+    0% {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25), 
+                    0 0 20px rgba(var(--color-primary-rgb), 0.4);
+    }
+    100% {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 
+                    0 0 35px rgba(var(--color-primary-rgb), 0.6),
+                    0 0 45px rgba(var(--color-secondary-rgb), 0.2);
+    }
+}
+
+/* Cards container glow effect that adapts to theme colors */
+#assistant-card-container {
+    position: relative;
+    width: 40%;
+    height: 380px;
+    max-height: 380px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--color-primary-rgb), 0.5) rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-radius: var(--radius-md);
+    background: rgba(20, 22, 30, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2),
+                0 0 20px rgba(var(--color-primary-rgb), 0.3);
+    transition: box-shadow 0.6s ease-in-out;
+    animation: cardsContainerGlow 4s infinite alternate;
+}
+
+/* Animate the glow effect with slight delay compared to the video container */
+@keyframes cardsContainerGlow {
+    0% {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2),
+                    0 0 20px rgba(var(--color-primary-rgb), 0.3);
+    }
+    100% {
+        box-shadow: 0 4px 25px rgba(0, 0, 0, 0.25),
+                    0 0 30px rgba(var(--color-primary-rgb), 0.5),
+                    0 0 40px rgba(var(--color-secondary-rgb), 0.15);
+    }
+}
+
+/* Individual card glow on hover */
+.assistant-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 
+                0 0 15px rgba(var(--color-primary-rgb), 0.4),
+                0 0 25px rgba(var(--color-primary-rgb), 0.2);
+}
+
+/* Active card stronger glow */
+.assistant-card.active {
+    border-color: rgba(var(--color-primary-rgb), 0.7);
+    background: rgba(30, 35, 45, 0.9);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 
+                0 0 20px rgba(var(--color-primary-rgb), 0.5),
+                0 0 30px rgba(var(--color-primary-rgb), 0.3);
+}
+
+/* High contrast mode support */
+.high-contrast .video-player-container {
+    box-shadow: 0 0 0 3px var(--color-primary),
+                0 0 0 6px rgba(0, 0, 0, 0.9),
+                0 0 20px var(--color-primary);
+    animation: highContrastVideoGlow 3s infinite alternate;
+}
+
+@keyframes highContrastVideoGlow {
+    0% {
+        box-shadow: 0 0 0 3px var(--color-primary),
+                    0 0 0 6px rgba(0, 0, 0, 0.9),
+                    0 0 20px var(--color-primary);
+    }
+    100% {
+        box-shadow: 0 0 0 3px var(--color-primary),
+                    0 0 0 6px rgba(0, 0, 0, 0.9),
+                    0 0 30px var(--color-primary),
+                    0 0 50px var(--color-secondary);
+    }
+}
+
+.high-contrast #assistant-card-container {
+    box-shadow: 0 0 0 2px var(--color-primary),
+                0 0 0 4px rgba(0, 0, 0, 0.9),
+                0 0 15px var(--color-primary);
+    animation: highContrastCardsGlow 4s infinite alternate;
+}
+
+@keyframes highContrastCardsGlow {
+    0% {
+        box-shadow: 0 0 0 2px var(--color-primary),
+                    0 0 0 4px rgba(0, 0, 0, 0.9),
+                    0 0 15px var(--color-primary);
+    }
+    100% {
+        box-shadow: 0 0 0 2px var(--color-primary),
+                    0 0 0 4px rgba(0, 0, 0, 0.9),
+                    0 0 25px var(--color-primary),
+                    0 0 40px var(--color-secondary);
+    }
+}
+
+/* Make sure the glow effects work well in different themes */
+:root[data-theme="quantum-void"] .video-player-container,
+:root[data-theme="quantum-void"] #assistant-card-container {
+    --glow-strength: 1;
+}
+
+:root[data-theme="biomorphic-synthesis"] .video-player-container,
+:root[data-theme="biomorphic-synthesis"] #assistant-card-container {
+    --glow-strength: 0.9;
+}
+
+:root[data-theme="neural-circuit"] .video-player-container,
+:root[data-theme="neural-circuit"] #assistant-card-container {
+    --glow-strength: 1.1;
+}
+
+:root[data-theme="blockchain-horizons"] .video-player-container,
+:root[data-theme="blockchain-horizons"] #assistant-card-container {
+    --glow-strength: 1.2;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .video-player-container,
+    #assistant-card-container {
+        width: 100%;
+        animation-duration: 4s;
+    }
+    
+    #assistant-card-container {
+        width: 60%;
+        margin: 0 auto 1.5rem auto;
+    }
+}
+
+@media (max-width: 768px) {
+    #assistant-card-container {
+        width: 80%;
+    }
+    
+    .video-player-container,
+    #assistant-card-container {
+        animation-duration: 5s;
+    }
+}
+
+@media (max-width: 576px) {
+    #assistant-card-container {
+        width: 95%;
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .video-player-container,
+    #assistant-card-container,
+    .high-contrast .video-player-container,
+    .high-contrast #assistant-card-container {
+        animation: none;
+        transition: none;
+    }
+    
+    .video-player-container {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25), 
+                    0 0 20px rgba(var(--color-primary-rgb), 0.4);
+    }
+    
+    #assistant-card-container {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2),
+                    0 0 20px rgba(var(--color-primary-rgb), 0.3);
+    }
+    
+    .high-contrast .video-player-container {
+        box-shadow: 0 0 0 3px var(--color-primary),
+                    0 0 20px var(--color-primary);
+    }
+    
+    .high-contrast #assistant-card-container {
+        box-shadow: 0 0 0 2px var(--color-primary),
+                    0 0 15px var(--color-primary);
+    }
+}

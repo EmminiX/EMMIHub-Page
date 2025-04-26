@@ -1,0 +1,75 @@
+.promptsage-animation {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: transparent;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 2rem 0;
+    will-change: transform; /* Optimize performance */
+}
+
+.promptsage-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Lexend', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    text-align: center;
+    z-index: 10;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 30px rgba(var(--color-primary-rgb), 0.3);
+    pointer-events: none;
+}
+
+.promptsage-tag {
+    position: absolute;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    border: 1px solid var(--tag-color);
+    box-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.15);
+    cursor: pointer;
+    user-select: none;
+    will-change: transform; /* Optimize performance */
+    backface-visibility: hidden; /* Prevent flickering */
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+.promptsage-tag:hover {
+    box-shadow: 0 0 20px var(--tag-color);
+    z-index: 20;
+}
+
+.promptsage-tag.paused {
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 25px var(--tag-color);
+    z-index: 30;
+}
+
+.promptsage-tag .tag-open,
+.promptsage-tag .tag-close {
+    color: var(--tag-color);
+    opacity: 0.9;
+}
+
+.promptsage-tag .tag-content {
+    color: var(--color-text);
+    margin: 0 0.25rem;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .promptsage-tag {
+        transition: none;
+    }
+}

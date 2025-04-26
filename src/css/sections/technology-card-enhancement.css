@@ -1,0 +1,348 @@
+/* 
+ * EMMIHUB - Technology Section Card Enhancements
+ * Advanced futuristic card styling for the technology section
+ */
+
+/* ===== TECHNOLOGY CARD ENHANCEMENTS ===== */
+
+/* 1. Enhanced Card Structure with Layered Depth Effect */
+.technology-section .subsection {
+    position: relative;
+    margin-bottom: var(--space-2xl);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    border: none;
+    overflow: hidden;
+    
+    /* Improve hardware acceleration */
+    transform: translateZ(0);
+    will-change: transform, box-shadow;
+    
+    /* Create base box shadow for depth */
+    box-shadow: 
+        0 10px 25px -5px rgba(0, 0, 0, 0.2),
+        0 0 15px rgba(var(--color-primary-rgb), 0.1),
+        0 0 0 1px rgba(var(--color-primary-rgb), 0.1);
+}
+
+/* Create the inner glow element */
+.technology-section .subsection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(
+            circle at 50% 0%, 
+            rgba(var(--color-primary-rgb), 0.15),
+            transparent 60%
+        );
+    opacity: 0.5;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* 2. Animated Gradient Borders using pseudo-elements */
+.technology-section .subsection::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(
+        135deg,
+        rgba(var(--color-primary-rgb), 0.2),
+        rgba(var(--color-secondary-rgb), 0.2),
+        rgba(var(--color-primary-rgb), 0.2),
+        rgba(var(--color-highlight-rgb), 0.2)
+    );
+    background-size: 300% 300%;
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask: 
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: borderGradientShift 8s ease infinite;
+    opacity: 0.7;
+    transition: opacity 0.5s ease;
+}
+
+/* 3. Geometric Corner Accents with data-theme support */
+.technology-section .subsection .corner {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+    opacity: 0.7;
+    transition: all 0.4s ease;
+}
+
+.technology-section .subsection .corner-top-left {
+    top: 0;
+    left: 0;
+    border-top: 2px solid rgba(var(--color-primary-rgb), 0.6);
+    border-left: 2px solid rgba(var(--color-primary-rgb), 0.6);
+    border-top-left-radius: 4px;
+}
+
+.technology-section .subsection .corner-top-right {
+    top: 0;
+    right: 0;
+    border-top: 2px solid rgba(var(--color-primary-rgb), 0.6);
+    border-right: 2px solid rgba(var(--color-primary-rgb), 0.6);
+    border-top-right-radius: 4px;
+}
+
+.technology-section .subsection .corner-bottom-left {
+    bottom: 0;
+    left: 0;
+    border-bottom: 2px solid rgba(var(--color-primary-rgb), 0.6);
+    border-left: 2px solid rgba(var(--color-primary-rgb), 0.6);
+    border-bottom-left-radius: 4px;
+}
+
+.technology-section .subsection .corner-bottom-right {
+    bottom: 0;
+    right: 0;
+    border-bottom: 2px solid rgba(var(--color-primary-rgb), 0.6);
+    border-right: 2px solid rgba(var(--color-primary-rgb), 0.6);
+    border-bottom-right-radius: 4px;
+}
+
+/* 4. Subtle Circuit Pattern Backgrounds using pseudo elements */
+.technology-section .subsection .circuit-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 30% 20%, rgba(var(--color-primary-rgb), 0.03) 0px, transparent 50px),
+        radial-gradient(circle at 80% 30%, rgba(var(--color-secondary-rgb), 0.03) 0px, transparent 50px),
+        radial-gradient(circle at 20% 70%, rgba(var(--color-highlight-rgb), 0.03) 0px, transparent 50px);
+    background-size: 100% 100%;
+    opacity: 0.3;
+    z-index: -1;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+/* 5. Sacred Geometry Background Pattern */
+.technology-section .subsection .sacred-geometry {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(
+        circle at center,
+        transparent 30%,
+        rgba(var(--color-primary-rgb), 0.02) 30%,
+        rgba(var(--color-primary-rgb), 0.02) 32%,
+        transparent 32%,
+        transparent 36%,
+        rgba(var(--color-primary-rgb), 0.01) 36%,
+        rgba(var(--color-primary-rgb), 0.01) 38%,
+        transparent 38%
+    );
+    background-size: 120px 120px;
+    opacity: 0.6;
+    z-index: -2;
+    pointer-events: none;
+    transition: opacity 0.5s ease, background-size 1s ease;
+}
+
+/* 6. Interactive Hover Effects */
+.technology-section .subsection:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 
+        0 20px 30px -8px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(var(--color-primary-rgb), 0.2),
+        0 0 0 1px rgba(var(--color-primary-rgb), 0.2);
+}
+
+/* Enhance inner glow on hover */
+.technology-section .subsection:hover::before {
+    opacity: 0.8;
+}
+
+/* Enhance border on hover */
+.technology-section .subsection:hover::after {
+    opacity: 1;
+}
+
+/* Enhance corner accents on hover */
+.technology-section .subsection:hover .corner {
+    opacity: 1;
+    width: 40px;
+    height: 40px;
+}
+
+/* Enhance patterns on hover */
+.technology-section .subsection:hover .circuit-pattern {
+    opacity: 0.6;
+}
+
+.technology-section .subsection:hover .sacred-geometry {
+    opacity: 0.8;
+    background-size: 100px 100px;
+}
+
+/* 7. Typography Enhancements */
+.technology-section .subsection-title {
+    position: relative;
+    font-size: var(--font-size-xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-md);
+    text-shadow: 0 0 10px rgba(var(--color-primary-rgb), 0.3);
+    padding-bottom: var(--space-sm);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Animated underline for subsection titles */
+.technology-section .subsection-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(
+        to right,
+        var(--color-primary),
+        rgba(var(--color-primary-rgb), 0.4)
+    );
+    transition: width 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+.technology-section .subsection:hover .subsection-title {
+    text-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.5);
+}
+
+.technology-section .subsection:hover .subsection-title::after {
+    width: 80px;
+}
+
+/* 8. Enhanced List Items */
+.technology-section .framework-features li {
+    position: relative;
+    padding-left: var(--space-xl);
+    margin-bottom: var(--space-md);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    transition: transform 0.3s ease;
+}
+
+.technology-section .framework-features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--space-md);
+    height: 2px;
+    background: var(--color-primary);
+    box-shadow: 0 0 5px rgba(var(--color-primary-rgb), 0.5);
+    transition: width 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Add pulsing animation to list marker on hover */
+.technology-section .framework-features li:hover {
+    transform: translateX(4px);
+}
+
+.technology-section .framework-features li:hover::before {
+    width: calc(var(--space-md) * 1.2);
+    background: var(--color-highlight, var(--color-primary));
+    box-shadow: 0 0 8px rgba(var(--color-highlight-rgb, var(--color-primary-rgb)), 0.7);
+}
+
+/* 9. Enhanced strong tags within lists */
+.technology-section .framework-features li strong {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+    text-shadow: 0 0 8px rgba(var(--color-primary-rgb), 0.2);
+    margin-right: var(--space-xs);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.technology-section .framework-features li:hover strong {
+    color: var(--color-highlight, var(--color-primary));
+    text-shadow: 0 0 8px rgba(var(--color-highlight-rgb, var(--color-primary-rgb)), 0.4);
+}
+
+/* 10. Animation Keyframes */
+@keyframes borderGradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 11. Reduced Motion Considerations */
+@media (prefers-reduced-motion: reduce) {
+    .technology-section .subsection,
+    .technology-section .subsection::before,
+    .technology-section .subsection::after,
+    .technology-section .subsection .corner,
+    .technology-section .subsection-title::after,
+    .technology-section .framework-features li,
+    .technology-section .framework-features li::before {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    .technology-section .subsection:hover {
+        transform: translateY(-4px) !important;
+    }
+    
+    .technology-section .framework-features li:hover {
+        transform: translateX(2px) !important;
+    }
+}
+
+/* 12. Responsive Adjustments */
+@media (max-width: 768px) {
+    .technology-section .subsection {
+        padding: var(--space-lg);
+    }
+    
+    .technology-section .subsection:hover {
+        transform: translateY(-4px) scale(1.005);
+    }
+    
+    .technology-section .subsection:hover .corner {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@media (max-width: 576px) {
+    .technology-section .subsection {
+        padding: var(--space-md);
+    }
+    
+    .technology-section .subsection:hover {
+        transform: translateY(-2px) scale(1);
+    }
+    
+    .technology-section .subsection:hover .corner {
+        width: 24px;
+        height: 24px;
+    }
+}

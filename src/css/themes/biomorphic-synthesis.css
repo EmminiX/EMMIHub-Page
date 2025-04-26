@@ -1,0 +1,147 @@
+/* 
+ * EMMIHUB - Biomorphic Synthesis Theme
+ * Nature-inspired theme with deep forest gradient and bioluminescent accents
+ */
+
+.theme-biomorphic-synthesis {
+    /* Background */
+    --color-background: linear-gradient(135deg, #121622);
+    --color-background-alt: rgba(26, 46, 14, 0.7);
+    
+    /* Text Colors */
+    --color-text: #f2f0e6;
+    --color-text-muted: rgba(242, 240, 230, 0.7);
+    --color-text-inverse: #0a2e1a;
+    
+    /* Accent Colors */
+    --color-primary: #43fec4;
+    --color-primary-rgb: 67, 254, 196;
+    --color-secondary: #466d1d;
+    --color-secondary-rgb: 70, 109, 29;
+    --color-highlight: #ffb100;
+    --color-highlight-rgb: 255, 177, 0;
+    
+    /* Particle Colors */
+    --color-particle-primary: #b5e48c;
+    --color-particle-secondary: #52b788;
+    --particle-line-color: rgba(255,255,255,0.36); /* Further increased opacity for maximum visibility */
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #43fec4, #466d1d);
+    --gradient-secondary: linear-gradient(90deg, #466d1d, #43fec4);
+    --gradient-highlight: linear-gradient(135deg, #ffb100, #43fec4);
+    
+    /* Shadows */
+    --shadow-color: rgba(67, 254, 196, 0.2);
+    --glow-primary: 0 0 15px rgba(67, 254, 196, 0.5);
+    --glow-secondary: 0 0 15px rgba(70, 109, 29, 0.5);
+    
+    /* Specific Element Colors */
+    --neural-network-color: rgba(67, 254, 196, 0.5);
+    --constellation-color: rgba(70, 109, 29, 0.7);
+    --code-color: #43fec4;
+    --terminal-color: #43fec4;
+    
+    /* Background Elements */
+    background: var(--color-background);
+    color: var(--color-text);
+}
+
+/* Theme-specific Element Styling */
+.theme-biomorphic-synthesis .neural-organic-network {
+    border-color: var(--color-primary);
+}
+
+.theme-biomorphic-synthesis .sacred-geometry-backdrop {
+    opacity: 0.1;
+    border-color: var(--color-secondary);
+}
+
+.theme-biomorphic-synthesis .stars-layer {
+    background-color: transparent;
+}
+
+.theme-biomorphic-synthesis .stars-layer.distant {
+    box-shadow: 0 0 1px var(--color-primary);
+}
+
+.theme-biomorphic-synthesis .stars-layer.mid-field {
+    box-shadow: 0 0 2px var(--color-primary);
+}
+
+.theme-biomorphic-synthesis .stars-layer.foreground {
+    box-shadow: 0 0 3px var(--color-primary);
+}
+
+.theme-biomorphic-synthesis .typewriter::after {
+    background-color: var(--color-primary);
+}
+
+.theme-biomorphic-synthesis .section-title::after {
+    background: var(--gradient-primary);
+}
+
+.theme-biomorphic-synthesis .tier.explorer {
+    border-color: var(--color-primary);
+}
+
+.theme-biomorphic-synthesis .tier.scholar {
+    border-color: var(--color-secondary);
+}
+
+.theme-biomorphic-synthesis .tier.visionary {
+    border-color: var(--color-highlight);
+}
+
+.theme-biomorphic-synthesis .tier.innovator {
+    border-color: var(--gradient-primary);
+}
+
+.theme-biomorphic-synthesis .assistant-icon.math-icon {
+    background: linear-gradient(135deg, #43fec4, #466d1d);
+}
+
+.theme-biomorphic-synthesis .assistant-icon.research-icon {
+    background: linear-gradient(135deg, #466d1d, #ffb100);
+}
+
+.theme-biomorphic-synthesis .assistant-icon.focus-icon {
+    background: linear-gradient(135deg, #ffb100, #466d1d);
+}
+
+.theme-biomorphic-synthesis .assistant-icon.linux-icon {
+    background: linear-gradient(135deg, #43fec4, #2a4d1b);
+}
+
+.theme-biomorphic-synthesis .assistant-icon.creative-icon {
+    background: linear-gradient(135deg, #466d1d, #ffb100);
+}
+
+.theme-biomorphic-synthesis .assistant-icon.workflow-icon {
+    background: linear-gradient(135deg, #ffb100, #43fec4);
+}
+
+.theme-biomorphic-synthesis .globe {
+    background: radial-gradient(circle at center, #1a2e0e, #0a2e1a);
+    box-shadow: 0 0 50px rgba(67, 254, 196, 0.3);
+}
+
+.theme-biomorphic-synthesis .cta-button.explorer {
+    background-color: rgba(67, 254, 196, 0.2);
+    border-color: var(--color-primary);
+}
+
+.theme-biomorphic-synthesis .cta-button.scholar {
+    background-color: rgba(70, 109, 29, 0.2);
+    border-color: var(--color-secondary);
+}
+
+.theme-biomorphic-synthesis .cta-button.visionary {
+    background-color: rgba(255, 177, 0, 0.2);
+    border-color: var(--color-highlight);
+}
+
+.theme-biomorphic-synthesis .cta-button.innovator {
+    background: linear-gradient(135deg, rgba(67, 254, 196, 0.2), rgba(70, 109, 29, 0.2));
+    border-image: var(--gradient-primary) 1;
+}

@@ -1,0 +1,192 @@
+/* 
+ * EMMIHUB - Section Neon Outlines
+ * Adds neon light outlines to all major sections of the site
+ */
+
+/* ===== SECTION NEON OUTLINES ===== */
+
+/* Base class for adding neon outline to sections */
+.section-neon-outline {
+    position: relative;
+    z-index: 1;
+    max-width: 92%;
+    width: 92%;
+    margin: 0 auto;
+    margin-bottom: var(--space-xl);
+    overflow: visible;
+}
+
+/* Left side vertical line */
+.section-neon-outline::before {
+    content: '';
+    position: absolute;
+    left: 60px;
+    top: var(--space-xl);
+    bottom: var(--space-xl);
+    width: 8px; /* Outline thickness */
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--color-primary-rgb), 0.3),
+        rgba(var(--color-secondary-rgb), 0.6),
+        rgba(var(--color-primary-rgb), 0.9)
+    );
+    background-size: 100% 300%;
+    animation: sectionBorderGradientVertical 8s ease infinite;
+    opacity: 0.3;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+    pointer-events: none;
+    box-shadow: 
+        0 0 15px rgba(var(--color-primary-rgb), 0.4),
+        0 0 30px rgba(var(--color-secondary-rgb), 0.2);
+}
+
+/* Right side vertical line */
+.section-neon-outline::after {
+    content: '';
+    position: absolute;
+    right: 60px;
+    top: var(--space-xl);
+    bottom: var(--space-xl);
+    width: 8px; /* Outline thickness */
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--color-primary-rgb), 0.7),
+        rgba(var(--color-secondary-rgb), 0.7),
+        rgba(var(--color-primary-rgb), 0.7)
+    );
+    background-size: 100% 300%;
+    animation: sectionBorderGradientVertical 8s ease infinite;
+    opacity: 0.3;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+    pointer-events: none;
+    box-shadow: 
+        0 0 15px rgba(var(--color-primary-rgb), 0.4),
+        0 0 30px rgba(var(--color-secondary-rgb), 0.2);
+}
+
+/* Animation for the flowing gradient border - vertical motion */
+@keyframes sectionBorderGradientVertical {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 0% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+/* Animate the glow effect */
+.section-neon-outline {
+    animation: sectionNeonGlow 4s infinite alternate;
+}
+
+@keyframes sectionNeonGlow {
+    0% {
+        box-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.2);
+    }
+    100% {
+        box-shadow: 0 0 30px rgba(var(--color-primary-rgb), 0.3),
+                    0 0 40px rgba(var(--color-secondary-rgb), 0.1);
+    }
+}
+
+/* High contrast mode support */
+.high-contrast .section-neon-outline::before,
+.high-contrast .section-neon-outline::after {
+    background: var(--color-primary);
+    opacity: 1;
+    box-shadow: 0 0 15px var(--color-primary);
+}
+
+/* Make sure the neon outlines work well in different themes */
+:root[data-theme="quantum-void"] .section-neon-outline {
+    --neon-strength: 1;
+}
+
+:root[data-theme="biomorphic-synthesis"] .section-neon-outline {
+    --neon-strength: 0.9;
+}
+
+:root[data-theme="neural-circuit"] .section-neon-outline {
+    --neon-strength: 1.1;
+}
+
+:root[data-theme="blockchain-horizons"] .section-neon-outline {
+    --neon-strength: 1.2;
+}
+
+/* Container wrapper for section content */
+.section-inner {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-lg);
+}
+
+/* Special styles for the hero section */
+#hero.section-neon-outline {
+    max-width: 100%;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+    .section-neon-outline {
+        max-width: 94%;
+        width: 94%;
+    }
+}
+
+@media (max-width: 992px) {
+    .section-neon-outline {
+        max-width: 96%;
+        width: 96%;
+    }
+    
+    .section-neon-outline::before,
+    .section-neon-outline::after {
+        top: var(--space-lg);
+        bottom: var(--space-lg);
+    }
+}
+
+@media (max-width: 768px) {
+    .section-neon-outline {
+        max-width: 98%;
+        width: 98%;
+    }
+    
+    .section-inner {
+        padding: var(--space-md);
+    }
+    
+    .section-neon-outline::before,
+    .section-neon-outline::after {
+        top: var(--space-md);
+        bottom: var(--space-md);
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .section-neon-outline,
+    .section-neon-outline::before,
+    .section-neon-outline::after {
+        animation: none;
+        transition: none;
+    }
+    
+    .section-neon-outline::before,
+    .section-neon-outline::after {
+        background: rgba(var(--color-primary-rgb), 0.7);
+    }
+    
+    .high-contrast .section-neon-outline::before,
+    .high-contrast .section-neon-outline::after {
+        background: var(--color-primary);
+    }
+}
