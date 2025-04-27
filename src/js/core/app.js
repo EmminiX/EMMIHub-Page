@@ -358,25 +358,47 @@ class EmmihubApp {
      * @private
      */
     handleHashChange() {
+        // Get the current hash
         const hash = window.location.hash;
+        
         if (hash) {
             const targetSection = document.querySelector(hash);
             if (targetSection) {
                 // Update current section
                 this.state.currentSection = hash.substring(1);
                 
-                // Calculate offset accounting for header height and additional padding for all sections
-                const headerHeight = document.querySelector('.site-header').offsetHeight;
-                const extraPadding = 20; // Extra padding for better visibility
-                const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight - extraPadding;
+                // IMPORTANT: Don't manipulate the header, theme selector, or accessibility controls
+                // during scrolling operations to prevent them from losing fixed positioning
                 
+                // Add a class to the body to indicate scrolling is happening
+                document.documentElement.classList.add('is-scrolling');
+                
+                // Calculate scroll position accounting for header height and padding
+                const headerHeight = document.querySelector('.site-header').offsetHeight || 0;
+                const extraPadding = 20; // Extra padding for better visibility
+                
+                // Calculate target position more reliably
+                const targetPosition = targetSection.getBoundingClientRect().top + 
+                                      window.pageYOffset - 
+                                      headerHeight - 
+                                      extraPadding;
+                
+                // Use minimal options to reduce side effects during scrolling
                 window.scrollTo({
                     top: targetPosition,
                     behavior: this.state.reducedMotion ? 'auto' : 'smooth'
                 });
                 
-                // Update active nav link
-                this.updateActiveNavLink();
+                // Update active nav link AFTER scrolling has been initiated
+                setTimeout(() => {
+                    this.updateActiveNavLink();
+                    // Remove scrolling class after a delay to ensure scroll is complete
+                    setTimeout(() => {
+                        document.documentElement.classList.remove('is-scrolling');
+                    }, 1000);
+                }, 100);
+                
+                return false; // Prevent default scrolling behavior
             }
         } else {
             // Default to home/hero section
@@ -622,10 +644,17 @@ class EmmihubApp {
         if (maxVisibleSection && maxVisibleSection.id !== this.state.currentSection) {
             this.state.currentSection = maxVisibleSection.id;
             
-            // Update URL hash without scrolling
-            history.replaceState(null, null, `#${maxVisibleSection.id}`);
+            // CRITICAL FIX: Use history.replaceState to update URL without triggering scrolling
+            // This prevents the issue with fixed headers being repositioned
+            if (history && history.replaceState) {
+                history.replaceState(
+                    {section: maxVisibleSection.id}, 
+                    '', 
+                    `#${maxVisibleSection.id}`
+                );
+            }
             
-            // Update active nav link
+            // Update active nav link without manipulating scroll position
             this.updateActiveNavLink();
             
             // Update error logger context
@@ -633,11 +662,6 @@ class EmmihubApp {
                 window.errorLogger.updateUserContext({
                     currentSection: maxVisibleSection.id
                 });
-            }
-            
-            // Debug: log section changes if debug mode is on
-            if (window.location.search.includes('debug=true')) {
-                console.log(`Section changed to: ${maxVisibleSection.id}`);
             }
         }
     }

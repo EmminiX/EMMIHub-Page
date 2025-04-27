@@ -137,6 +137,40 @@ body {
     overflow-y: auto; /* Allow vertical scrolling */
     overflow-x: hidden; /* Prevent horizontal scrolling */
     transition: var(--transition-colors);
+    background-color: var(--color-background);
+    background-image: var(--background-image);
+    background-attachment: fixed;
+}
+
+/* Define theme-specific backgrounds with fallback colors */
+.theme-quantum-void {
+    --color-background: #121622;
+    --background-image: linear-gradient(135deg, #121622, #16182c);
+}
+
+.theme-biomorphic-synthesis {
+    --color-background: #1a1d14;
+    --background-image: linear-gradient(135deg, #1a1d14, #182818);
+}
+
+.theme-neural-circuit {
+    --color-background: #1F161D;
+    --background-image: linear-gradient(135deg, #1F161D, #2d1a20);
+}
+
+.theme-blockchain-horizons {
+    --color-background: #0a1a1a;
+    --background-image: linear-gradient(135deg, #0a1a1a, #122226);
+}
+
+/* Force hardware acceleration */
+body, section, .container, .content-wrapper {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000;
+    -webkit-perspective: 1000;
 }
 
 img, picture, video, canvas, svg {
@@ -199,13 +233,14 @@ ul, ol {
 }
 
 .accessibility-controls {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    z-index: var(--z-overlay);
+    z-index: var(--z-overlay) !important;
+    will-change: transform; /* Optimization for fixed elements */
 }
 
 .reduced-motion-toggle,
@@ -218,9 +253,11 @@ ul, ol {
     border-radius: var(--radius-md);
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* Safari support */
     color: var(--color-text);
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Add subtle shadow for better visibility */
 }
 
 .reduced-motion-toggle:hover,
@@ -335,15 +372,16 @@ p {
 
 /* ===== HEADER ===== */
 .site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: var(--z-header);
-    padding: var(--space-md) 0;
-    transition: var(--transition-all);
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 9999 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
     background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .site-header .container {
@@ -499,11 +537,11 @@ p {
 
 /* ===== THEME SELECTOR ===== */
 .theme-selector {
-    position: fixed;
-    top: 50%; /* Center vertically */
-    right: 24px; /* Position on right side */
-    transform: translateY(-50%); /* Center alignment correction */
-    z-index: var(--z-overlay);
+    position: fixed !important;
+    top: 50% !important; /* Center vertically */
+    right: 24px !important; /* Position on right side */
+    transform: translateY(-50%) !important; /* Center alignment correction */
+    z-index: 9999 !important;
     display: flex;
     flex-direction: column; /* Stack items vertically */
     align-items: center;
@@ -513,7 +551,9 @@ p {
     padding: 24px 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
     border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    will-change: transform; /* Optimization for fixed elements */
 }
 
 .theme-label {
@@ -3413,19 +3453,291 @@ canvas {
 /* Safari-specific optimizations */
 @media not all and (min-resolution: 0.001dpcm) {
     @supports (-webkit-appearance:none) {
+        /* Safari-specific selector */
+        body {
+            /* Add Safari browser class for JavaScript detection */
+            -webkit-animation: safari-browser-detector 0.001s;
+            animation: safari-browser-detector 0.001s;
+        }
+        
+        /* Ensure canvas elements are visible */
         .neural-organic-network,
         .sacred-geometry-backdrop,
         .interactive-particle-system,
         .background-visuals {
             opacity: 0.7 !important; /* Reduce opacity to improve performance in Safari */
+            transform: translateZ(0) !important;
+            -webkit-transform: translateZ(0) !important;
+            display: block !important;
+            visibility: visible !important;
+            z-index: -1 !important;
+        }
+        
+        /* Fix for canvas elements in Safari */
+        canvas.neural-network-canvas,
+        .sacred-geometry-canvas,
+        .particle-system-canvas {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: translateZ(0) !important;
+            -webkit-transform: translateZ(0) !important;
+            -webkit-backface-visibility: hidden !important;
+            backface-visibility: hidden !important;
+            perspective: 1000 !important;
+            -webkit-perspective: 1000 !important;
+            display: block !important;
+            image-rendering: -webkit-optimize-contrast;
         }
         
         /* Simplify animations for Safari */
-        .neural-network-canvas {
-            image-rendering: -webkit-optimize-contrast;
+        .neural-network-canvas, 
+        .sacred-geometry-canvas,
+        .particle-system-canvas {
+            will-change: transform !important;
             filter: none !important; /* Remove computationally expensive filters */
+        }
+
+        /* Remove backdrop-filter for Safari due to performance issues */
+        .split-screen-visualization,
+        .tier, 
+        .philosophy-list li, 
+        .community-section .content-wrapper,
+        .blur-effect-container,
+        .assistants-blur-container {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            background-color: rgba(20, 20, 30, 0.7) !important; /* Use more opaque background instead */
+        }
+        
+        /* Fix for CTA buttons in Safari */
+        .cta-button {
+            background-color: var(--color-primary) !important;
+            -webkit-background-size: 200% 100% !important;
+            background-size: 200% 100% !important;
+            transform: translateZ(0) !important;
+            -webkit-transform: translateZ(0) !important;
+        }
+
+        .cta-button::before {
+            -webkit-background-size: 200% 100% !important;
+            background-size: 200% 100% !important;
+        }
+
+        /* Fix for quantum-void theme background */
+        .theme-quantum-void {
+            background-color: #121622 !important; /* Fallback solid color */
+            background-image: linear-gradient(135deg, #121622, #16182c) !important; /* Explicit gradient with two color stops */
+        }
+
+        /* Fix for biomorphic-synthesis theme background */
+        .theme-biomorphic-synthesis {
+            background-color: #1a1d14 !important; /* Fallback solid color */
+            background-image: linear-gradient(135deg, #1a1d14, #182818) !important; /* Explicit gradient with two color stops */
+        }
+
+        /* Fix for neural-circuit theme background */
+        .theme-neural-circuit {
+            background-color: #1F161D !important; /* Fallback solid color */
+            background-image: linear-gradient(135deg, #1F161D, #2d1a20) !important; /* Explicit gradient with two color stops */
+        }
+
+        /* Fix for blockchain-horizons theme background */
+        .theme-blockchain-horizons {
+            background-color: #0a1a1a !important; /* Fallback solid color */
+            background-image: linear-gradient(135deg, #0a1a1a, #122226) !important; /* Explicit gradient with two color stops */
+        }
+        
+        /* Ensure all theme backgrounds apply to the entire document */
+        html, body {
+            background-color: inherit !important;
+            background-image: inherit !important;
+            background-attachment: fixed !important;
+            min-height: 100% !important;
+        }
+        
+        /* Ensure background is visible through all layers */
+        section, .container, .content-wrapper {
+            background-color: transparent !important;
         }
     }
 }
 
+/* Define Safari detector animation */
+@-webkit-keyframes safari-browser-detector {
+    from { opacity: 0.9999; }
+    to { opacity: 1; }
+}
+
+@keyframes safari-browser-detector {
+    from { opacity: 0.9999; }
+    to { opacity: 1; }
+}
+
 /* ===== BUTTONS ===== */
+.site-header, 
+.theme-selector, 
+.accessibility-controls {
+    position: fixed !important;
+    z-index: var(--z-overlay) !important;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    perspective: 1000;
+    -webkit-perspective: 1000;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Maintain existing specific styles for each component */
+.site-header {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+}
+
+.theme-selector {
+    top: 50% !important;
+    right: 24px !important;
+    transform: translateY(-50%) translateZ(0) !important;
+}
+
+.accessibility-controls {
+    bottom: 20px !important;
+    right: 20px !important;
+}
+
+/* Fixed position elements - critical override */
+.site-header, 
+.theme-selector, 
+.accessibility-controls {
+    position: fixed !important;
+    z-index: 9999 !important; /* Super high z-index to ensure they're above everything */
+    transition: none !important; /* Prevent any transitions that might cause issues */
+    transform: none !important; /* Override any transforms applied elsewhere */
+    
+    /* Advanced GPU acceleration and rendering optimizations */
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    
+    /* Ensure position isn't affected by any parent transforms */
+    transform-style: flat;
+    -webkit-transform-style: flat;
+}
+
+/* Exception for the theme selector which needs its transform for vertical centering */
+.theme-selector {
+    transform: translateY(-50%) !important;
+    -webkit-transform: translateY(-50%) !important;
+}
+
+/* Add position overrides for each element to ensure they stay fixed to viewport */
+.site-header {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+}
+
+.accessibility-controls {
+    bottom: 20px !important;
+    right: 20px !important;
+}
+
+/* Make them immune to any scroll-based positioning effects */
+html.is-scrolling .site-header,
+html.is-scrolling .theme-selector,
+html.is-scrolling .accessibility-controls,
+body.scrolling .site-header,
+body.scrolling .theme-selector,
+body.scrolling .accessibility-controls {
+    position: fixed !important;
+}
+
+/* ===== FIXED ELEMENTS ===== */
+.site-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 9999 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.theme-selector {
+    position: fixed !important;
+    top: 50% !important;
+    right: 24px !important;
+    transform: translateY(-50%) !important;
+    -webkit-transform: translateY(-50%) !important;
+    z-index: 9999 !important;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.accessibility-controls {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    z-index: 9999 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+}
+
+/* Remove any transitions that might interfere with fixed positioning */
+.site-header,
+.theme-selector,
+.accessibility-controls {
+    transition: none !important;
+    -webkit-transition: none !important;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+}
+
+/* Ensure fixed positioning remains during scrolling */
+html.is-scrolling .site-header,
+html.is-scrolling .theme-selector,
+html.is-scrolling .accessibility-controls,
+body.scrolling .site-header,
+body.scrolling .theme-selector,
+body.scrolling .accessibility-controls {
+    position: fixed !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+}
+
+/* Exception for theme selector's vertical centering */
+html.is-scrolling .theme-selector,
+body.scrolling .theme-selector {
+    transform: translateY(-50%) !important;
+    -webkit-transform: translateY(-50%) !important;
+}
+
+/* Ensure content flows under fixed elements */
+main {
+    position: relative;
+    z-index: 1;
+}
+
+/* Force a new stacking context for fixed elements */
+body {
+    transform: none;
+    -webkit-transform: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
